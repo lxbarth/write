@@ -1,0 +1,43 @@
+
+
+
+body {
+  font-size: 20px;
+  line-height: 30px;
+  color: #999;
+  }
+  h1, h2, h3, h4, h5, p, ul {
+    margin-bottom: 20px;
+    }
+    ul ul {
+      margin-bottom: 0px;
+      }
+  ul {
+    margin-left: 20px;
+    }
+    li {
+      list-style: disc inside none;
+      }
+
+.write-wrapper {
+  width: 50%;
+  }
+  .write {
+    padding: 10px;
+    }
+    .write textarea {
+      color: #333;
+      font-size: 20px;
+      line-height: 30px;
+      width: 100%;
+      font-family: monospace;
+      resize: none;
+      }
+
+.preview-wrapper {
+  float: right;
+  width: 50%;
+  }
+  .preview {
+    padding: 10px;
+    }
