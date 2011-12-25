@@ -20,8 +20,8 @@ $(function() {
         var pos = 0;
         $('.preview .content p,ol,ul,h1,h2,h3,h4,h5,h6').each(function(i, e) {
             if (breaks > pos++) return true;
-            // TODO: .preview-panel to this position.
-            $('.preview-panel').animate({'scrollTop': $(e).position().top}, 500);
+            var to = $(e).position().top + $('.preview-panel').scrollTop();
+            $('.preview-panel').animate({'scrollTop': to}, 500);
             return false;
         });
     };
