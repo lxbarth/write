@@ -1,54 +1,45 @@
 
 $(function() {
-    resizeTextarea();
     var converter = new Showdown.converter();
     $('.write textarea').focus();
     $('.write').keyup(function(e) {
         $('.preview').html(converter.makeHtml($('.write textarea').val()));
     });
+    var repos = function(e) {
+        var breaks = 0;
+        try {
+            breaks = $("#input")
+                .val()
+                .substr(
+                    0,
+                    $("#input").getCursorPosition()
+                )
+                .match(/\n\s*\n/g)
+                .length;
+        } catch(e) {}
+        console.log(breaks);
+    };
+    $('#input').keyup(repos);
+    $('#input').mouseup(repos);
 });
 
-// After bones-document and http://james.padolsey.com/javascript/jquery-plugin-autoresize
-// --------------------------------------------------------------------------------------
-var resizeTextarea = function() {
-    var textarea = $('.write textarea');
-    var clone = (function(){
-            return textarea.clone().removeAttr('id').removeAttr('name').css({
-                position: 'absolute',
-                top: 0,
-                left: -9999,
-                height: 0,
-                minHeight: 0,
-                width: textarea.css('width'),
-                paddingTop: $.browser.msie ? 0 : textarea.css('paddingTop'),
-                paddingRight: $.browser.msie ? 0 : textarea.css('paddingRight'),
-                paddingBottom: $.browser.msie ? 0 : textarea.css('paddingBottom'),
-                paddingLeft: $.browser.msie ? 0 : textarea.css('paddingLeft'),
-                lineHeight: textarea.css('lineHeight'),
-                textDecoration: textarea.css('textDecoration'),
-                letterSpacing: textarea.css('letterSpacing')
-            }).attr('tabIndex','-1').insertBefore(textarea);
-        })(),
-        updateSize = function() {
-            // Update clone.
-            clone.val($(this).val()).scrollTop(10000);
-            // Find scrolling height of text in clone and update
-            var height = clone.scrollTop();
-            if (!$.browser.msie) {
-                padding = textarea.css('padding-top');
-                height += padding ? parseInt(padding.replace(/px$/, '')) : 0;
-                padding = textarea.css('padding-bottom');
-                height += padding ? parseInt(padding.replace(/px$/, '')) : 0;
-            }
-            // Add extra padding to the bottom of the textarea
-            // to simulate an extra line.
-            height += parseInt(clone.css('line-height').replace(/px$/, ''));
+// http://stackoverflow.com/questions/1891444/how-can-i-get-cursor-position-in-a-textarea
+new function($) {
+$.fn.getCursorPosition = function() {
+    var pos = 0;
+    var el = $(this).get(0);
+    // IE Support
+    if (document.selection) {
+        el.focus();
+        var Sel = document.selection.createRange();
+        var SelLength = document.selection.createRange().text.length;
+        Sel.moveStart('character', -el.value.length);
+        pos = Sel.text.length - SelLength;
+    }
+    // Firefox support
+    else if (el.selectionStart || el.selectionStart == '0')
+        pos = el.selectionStart;
 
-            $(this).height(height);
-        };
-    textarea
-        .bind('keyup', updateSize)
-        .bind('keydown', updateSize)
-        .bind('change', updateSize);
-    updateSize.call(textarea);
-};
+    return pos;
+}
+} (jQuery);
