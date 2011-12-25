@@ -21,7 +21,7 @@ $(function() {
         $('.preview .content p,ol,ul,h1,h2,h3,h4,h5,h6').each(function(i, e) {
             if (breaks > pos++) return true;
             // TODO: .preview-panel to this position.
-            console.log($(e).position().top);
+            $('.preview-panel').animate({'scrollTop': $(e).position().top}, 500);
             return false;
         });
     };
