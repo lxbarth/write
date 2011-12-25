@@ -3,7 +3,7 @@ $(function() {
     var converter = new Showdown.converter();
     $('.write textarea').focus();
     $('.write').keyup(function(e) {
-        $('.preview').html(converter.makeHtml($('.write textarea').val()));
+        $('.preview .content').html(converter.makeHtml($('.write textarea').val()));
     });
     var repos = function(e) {
         var breaks = 0;
@@ -17,7 +17,13 @@ $(function() {
                 .match(/\n\s*\n/g)
                 .length;
         } catch(e) {}
-        console.log(breaks);
+        var pos = 0;
+        $('.preview .content p,ol,ul,h1,h2,h3,h4,h5,h6').each(function(i, e) {
+            if (breaks > pos++) return true;
+            // TODO: .preview-panel to this position.
+            console.log($(e).position().top);
+            return false;
+        });
     };
     $('#input').keyup(repos);
     $('#input').mouseup(repos);
