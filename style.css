@@ -1,19 +1,5 @@
 
-
-html,
-body {
-  height: 100%;
-  }
-.panels {
-  height: 99%;
-  }
-.write-panel,
-.preview-panel {
-  height: 100%;
-  }
-  .preview-panel {
-    overflow: auto;
-    }
+/* Edit/preview text */
 body {
   font-size: 20px;
   line-height: 30px;
@@ -32,25 +18,41 @@ body {
       list-style: disc inside none;
       }
 
-.write-panel {
-  width: 50%;
+/* Layout */
+html,
+body {
+  height: 100%;
   }
+.panels {
+  height: 99%;
+  }
+  .write-panel,
+  .preview-panel {
+    height: 100%;
+    }
+
 .preview-panel {
+  overflow: auto;
   float: right;
   width: 50%;
   }
-
-.write {
-  height: 100%;
-  }
-  .write textarea {
-    color: #333;
-    font-size: 20px;
-    line-height: 30px;
-    width: 100%;
-    height: 100%;
-    font-family: monospace;
-    resize: none;
+  .preview {
+    padding: 0 10px 0 5px;
     }
-.preview {
+
+.write-panel {
+  width: 50%;
   }
+  .write {
+    height: 100%;
+    padding: 0 5px 0 10px;
+    }
+    .write textarea {
+      color: #333;
+      font-size: 20px;
+      line-height: 30px;
+      width: 100%;
+      height: 100%;
+      font-family: monospace;
+      resize: none;
+      }
