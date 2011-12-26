@@ -22,9 +22,25 @@ body {
 html,
 body {
   height: 100%;
+  overflow: hidden;
   }
+#write {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  overflow: none;
+  }
+  #write-inner {
+    position: absolute;
+    top: 0px;
+    right: 40px;
+    bottom: 40px;
+    left: 0px;
+    }
 .panels {
-  height: 99%;
+  height: 100%;
   }
   .write-panel,
   .preview-panel {
@@ -36,16 +52,12 @@ body {
   float: right;
   width: 50%;
   }
-  .preview {
-    padding: 0 10px 0 5px;
-    }
 
 .write-panel {
   width: 50%;
   }
   .write {
     height: 100%;
-    padding: 0 5px 0 10px;
     }
     .write textarea {
       color: #333;
