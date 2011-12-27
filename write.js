@@ -5,6 +5,7 @@ $(function() {
     $('.write').keyup(function(e) {
         $('.preview .content').html(converter.makeHtml($('.write textarea').val()));
     });
+    // Match preview position to edit position.
     var repos = function(e) {
         var breaks = 0;
         try {
