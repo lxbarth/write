@@ -1,10 +1,9 @@
 
 $(function() {
     var converter = new Showdown.converter();
-    $('.write textarea').focus();
-    $('.write').keyup(function(e) {
+    var convert = function(e) {
         $('.preview .content').html(converter.makeHtml($('.write textarea').val()));
-    });
+    };
     // Match preview position to edit position.
     var repos = function(e) {
         var breaks = 0;
@@ -28,6 +27,9 @@ $(function() {
     };
     $('#input').keyup(repos);
     $('#input').mouseup(repos);
+    $('.write').keyup(convert);
+    convert();
+    $('.write textarea').focus();
 });
 
 // http://stackoverflow.com/questions/1891444/how-can-i-get-cursor-position-in-a-textarea
